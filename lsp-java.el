@@ -1080,9 +1080,9 @@ current symbol."
       (progn
         (require 'helm-source)
         (helm :sources (helm-make-source
-                        message 'helm-source-sync :candidates items
-                        :action '(("Identity" lambda (_)
-                                   (setq lsp-java--helm-result (helm-marked-candidates)))))
+                           message 'helm-source-sync :candidates items
+                           :action '(("Identity" lambda (_)
+                                      (setq lsp-java--helm-result (helm-marked-candidates)))))
               :buffer "*lsp-java select*"
               :prompt message)
         lsp-java--helm-result)

@@ -124,7 +124,7 @@ If the port is taken, DAP will try the next port."
                               lsp:document-symbol-name)))
       (concat package-name "." class-name)
     (unless no-signal?
-        (user-error "No class found"))))
+      (user-error "No class found"))))
 
 (defun dap-java-test-method-at-point (&optional no-signal?)
   "Get method at point."
@@ -144,7 +144,7 @@ If the port is taken, DAP will try the next port."
                             children?))))
              (cl-first))
         (unless no-signal?
-            (user-error "No method at point")))))
+          (user-error "No method at point")))))
 
 (defun dap-java--select-main-class ()
   "Select main class from the current workspace."
@@ -182,6 +182,7 @@ Please check whether the server is configured propertly"))
         (dap--put-if-absent :cwd (lsp-java--get-root))
         (dap--put-if-absent :stopOnEntry :json-false)
         (dap--put-if-absent :host "localhost")
+        (dap--put-if-absent :shortenCommandLine "auto")
         (dap--put-if-absent :console (symbol-name dap-java-terminal))
         (dap--put-if-absent :request "launch")
         (dap--put-if-absent :modulePaths (vector))
@@ -299,7 +300,7 @@ If there is no method under cursor it will fallback to test class."
   (interactive)
   (if dap-java--latest-test
       (dap-start-debugging dap-java--latest-test)
-      (message "No previous tests to rerun")))
+    (message "No previous tests to rerun")))
 
 (defun dap-java-debug-test-method (port)
   "Debug JUnit test.
